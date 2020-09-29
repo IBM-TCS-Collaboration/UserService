@@ -21,7 +21,7 @@ namespace UserService.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql(@"server=ts-management-db; port=3360; database=userdb; user=root; password=password");
+            optionsBuilder.UseMySql(@"server=ts-management-db; port=3306; database=userdb; user=root; password=password");
         }
     }
 }
