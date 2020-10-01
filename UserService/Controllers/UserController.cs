@@ -29,9 +29,9 @@ namespace UserService.Controllers
 
         }
 
-        [ActionName("Login")]
+       [ActionName("Login")]
         [HttpGet("{id}/{pwd}")]
-        public IActionResult GetLoginDetails(string id, string pwd)
+        public HttpResponseMessage GetLoginDetails(string id, string pwd)
         {
             // var returnedResult = (from Q in db.Users select Q.UserId).ToList();
 
@@ -40,16 +40,18 @@ namespace UserService.Controllers
 
             if (returnedResult.Count() > 0)
             {
-                return Ok();
+                //return Ok("Login Successful");
+                // return StatusCode(StatusCodes.Status200OK);
+                return new HttpResponseMessage(HttpStatusCode.OK);
             }
 
             else
             {
-                return StatusCode(500);
+                //return 
+                //return StatusCode(StatusCodes.Status500InternalServerError);
+                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
             }
-
- }
-
+            
         [ActionName("GetUserRoles")]
         [HttpGet]
         public IActionResult GetUserRoles()
