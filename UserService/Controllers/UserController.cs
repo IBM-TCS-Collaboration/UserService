@@ -140,7 +140,7 @@ namespace UserService.Controllers
         [HttpGet]
         public IEnumerable<User> GetAllAdmins()
         {
-            var allAdmins = db.Users.FromSql("SELECT * FROM userdb.users where RoleID=1;");
+            var allAdmins = db.Users.FromSql("SELECT * FROM userdb.Users where RoleID=1;");
             return allAdmins;
         }
 
