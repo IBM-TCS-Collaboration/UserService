@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using AutoMapper;
-using System.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -30,7 +31,7 @@ namespace UserService.Controllers
 
         }
 
-       [ActionName("Login")]
+        [ActionName("Login")]
         [HttpGet("{id}/{pwd}")]
         public HttpResponseMessage GetLoginDetails(string id, string pwd)
         {
@@ -52,8 +53,9 @@ namespace UserService.Controllers
                 //return StatusCode(StatusCodes.Status500InternalServerError);
                 return new HttpResponseMessage(HttpStatusCode.InternalServerError);
             }
-            }
-            
+
+ }
+
         [ActionName("GetUserRoles")]
         [HttpGet]
         public IActionResult GetUserRoles()
