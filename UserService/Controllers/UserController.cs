@@ -51,6 +51,7 @@ namespace UserService.Controllers
                 //return StatusCode(StatusCodes.Status500InternalServerError);
                 return new HttpResponseMessage(HttpStatusCode.InternalServerError);
             }
+            }
             
         [ActionName("GetUserRoles")]
         [HttpGet]
