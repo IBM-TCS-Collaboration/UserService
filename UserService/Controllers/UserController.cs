@@ -30,6 +30,33 @@ namespace UserService.Controllers
             db = new DatabaseContext();
 
         }
+        
+        [ActionName("ResetPassword")]
+        [HttpPut("{UserId}")]
+        public IActionResult ResetPassword([FromBody] User n)
+        {
+            var existingUser = db.Users.Where(s => s.UserId == n.UserId).FirstOrDefault<User>();
+
+
+            if (existingUser != null)
+            {
+                existingUser.Password = n.Password;
+                existingUser.ConfirmPassword = n.ConfirmPassword;
+                if(n.Password==n.ConfirmPassword)
+                { 
+                db.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            else
+            {
+                return NotFound();
+            }
+            return Ok();
+        }
 
         [ActionName("Login")]
         [HttpGet("{id}/{pwd}")]
