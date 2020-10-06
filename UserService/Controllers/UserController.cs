@@ -125,7 +125,7 @@ namespace UserService.Controllers
         public IActionResult GetAdminCount()
         {
             var count = from User in db.Users
-                        where User.RoleID == 1
+                        where User.RoleID == 2
                         group User by 1 into g
                         select new
                         {
@@ -167,7 +167,7 @@ namespace UserService.Controllers
         [HttpGet]
         public IEnumerable<User> GetAllAdmins()
         {
-            var allAdmins = db.Users.FromSql("SELECT * FROM userdb.Users where RoleID=1;");
+            var allAdmins = db.Users.FromSql("SELECT * FROM userdb.Users where RoleID=2;");
             return allAdmins;
         }
 
