@@ -58,6 +58,26 @@ namespace UserService.Controllers
             return Ok();
         }
 
+[ActionName("deleteUser")]
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+
+            var userToDelete = db.Users.SingleOrDefault(x => x.UserId == id);
+
+            if (userToDelete == null)
+            {
+                return NotFound("No record found");
+            }
+
+            db.Users.Remove(userToDelete);
+            db.SaveChanges();
+
+            return Ok();
+
+        }
+
+
         [ActionName("Login")]
         [HttpGet("{id}/{pwd}")]
         public HttpResponseMessage GetLoginDetails(string id, string pwd)
