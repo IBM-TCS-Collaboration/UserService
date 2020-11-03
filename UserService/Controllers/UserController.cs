@@ -57,6 +57,27 @@ namespace UserService.Controllers
             }
             return Ok();
         }
+        
+        [ActionName("GetCaptcha")]
+        [HttpGet]
+        public IActionResult GetCaptcha()
+        {
+            Random ran = new Random();
+
+            String b = "abcdefghijklmnopqrstuvwxyz";
+
+            int length = 5;
+
+            var random = "";
+
+            for (int i = 0; i < length; i++)
+            {
+                int a = ran.Next(26);
+                random = random + b.ElementAt(a);
+            }
+
+            return Ok(random);
+        }
 
 [ActionName("deleteUser")]
         [HttpDelete("{id}")]
