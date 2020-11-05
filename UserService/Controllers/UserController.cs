@@ -150,19 +150,12 @@ namespace UserService.Controllers
             return Ok(UserRole);
         }
 
-        [ActionName("UserCount")]
+          [ActionName("UserCount")]
         [HttpGet]
         public IActionResult GetUserCount()
         {
-            var query = from User in db.Users
-                        group User by 1 into a
-
-                        select new {
-
-                            UserCount = a.Count()
-
-                        };
-                
+            var query = (from e in db.Users select e.UserId).Count();
+           
             
             return Ok(query);
         }
@@ -171,16 +164,11 @@ namespace UserService.Controllers
         [HttpGet]
         public IActionResult GetAdminCount()
         {
-            var count = from User in db.Users
-                        where User.RoleID == 2
-                        group User by 1 into g
-                        select new
-                        {
-                            AdminCount = g.Count()
-                        };
+            var query = (from e in db.Users where e.RoleID == 2 select e.UserId).Count();
 
-            return Ok(count);
+            return Ok(query);
         }
+
 
         
 
