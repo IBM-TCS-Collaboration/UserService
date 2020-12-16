@@ -6,10 +6,11 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.1-stretch AS build
 WORKDIR /src
-COPY ["UserService/UserService.csproj", "UserService/"]
+COPY ["UserService.csproj", "UserService/"]
 RUN dotnet restore "UserService/UserService.csproj"
-COPY . .
+#COPY . .
 WORKDIR "/src/UserService"
+COPY . .
 RUN dotnet build "UserService.csproj" -c Release -o /app/build
 
 FROM build AS publish
